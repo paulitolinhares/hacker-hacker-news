@@ -10,6 +10,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
+    "styled-components": "^4.3.2",
     "typescript": "3.5.3"
   },
   "scripts": {
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@storybook/react": "^5.1.10",
     "@types/storybook__react": "^4.0.2",
+    "@types/styled-components": "^4.1.18",
     "awesome-typescript-loader": "^5.2.1"
   }
 }

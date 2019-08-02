@@ -1,4 +1,5 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import Hello from "../components/presentation/Hello";
 
-storiesOf("Hello world", module).add("Test", () => <h1>Hello world!</h1>);
+storiesOf("Hello world", module).add("Test", () => <Hello>Hello world!</Hello>);
