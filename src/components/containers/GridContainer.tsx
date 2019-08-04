@@ -12,7 +12,7 @@ interface GridContainerProps {
 const GridContainer = ({ getTopStories, articles }: GridContainerProps) => {
   useEffect(() => {
     getTopStories();
-  }, []);
+  }, [getTopStories]);
   return <ArticleGrid articles={articles} />;
 };
 
