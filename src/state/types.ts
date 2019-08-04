@@ -9,14 +9,24 @@ export interface ArticleState {
 
 export interface GridState {
   articles: ArticleState[];
+  page: number;
 }
 
 export const GET_TOP_STORIES = "GET_TOP_STORIES";
+export const GET_TOP_STORIES_SUCCESS = "GET_TOP_STORIES_SUCCESS";
 export const LOAD_ARTICLE = "LOAD_ARTICLE";
 export const LOAD_ARTICLE_SUCCESS = "LOAD_ARTICLE_SUCCESS";
+export const CHANGE_PAGE = "CHANGE_PAGE";
 
 export interface GetTopStoriesAction {
   type: typeof GET_TOP_STORIES;
+}
+
+export interface GetTopStoriesSuccessAction {
+  type: typeof GET_TOP_STORIES_SUCCESS;
+  payload: {
+    ids: number[];
+  };
 }
 
 export interface LoadArticleAction {
@@ -34,7 +44,16 @@ export interface LoadArticleSuccessAction {
   };
 }
 
+export interface ChangePageAction {
+  type: typeof CHANGE_PAGE;
+  payload: {
+    page: number;
+  };
+}
+
 export type ActionTypes =
   | GetTopStoriesAction
+  | GetTopStoriesSuccessAction
   | LoadArticleAction
-  | LoadArticleSuccessAction;
+  | LoadArticleSuccessAction
+  | ChangePageAction;

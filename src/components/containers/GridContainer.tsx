@@ -3,17 +3,25 @@ import ArticleGrid from "../presentation/ArticleGrid";
 import { connect } from "react-redux";
 import { GridState, ArticleState } from "../../state/types";
 import { getTopStories } from "../../state/actions";
+import { getCurrentPageArticles } from "../../lib/pagination";
 
 interface GridContainerProps {
   getTopStories: any;
   articles: ArticleState[];
+  page: number;
 }
 
-const GridContainer = ({ getTopStories, articles }: GridContainerProps) => {
+const GridContainer = ({
+  getTopStories,
+  articles,
+  page
+}: GridContainerProps) => {
   useEffect(() => {
     getTopStories();
   }, [getTopStories]);
-  return <ArticleGrid articles={articles} />;
+  const paginatedArticles = getCurrentPageArticles(articles, page);
+
+  return <ArticleGrid articles={paginatedArticles} />;
 };
 
 const mapStateToProps = (state: GridState) => {
