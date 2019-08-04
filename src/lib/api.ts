@@ -8,8 +8,17 @@ const getTopStories = (fetch: any) => {
   };
 };
 
+const getArticle = (fetch: any) => {
+  return async function getArticleInjected(id: number): Promise<any> {
+    const url = `${baseUrl}/item/${id}.json`;
+    const article = await fetch(url).then((res: Response) => res.json());
+    return article;
+  };
+};
+
 export const apiFactory = (fetch: any) => ({
-  getTopStories: getTopStories(fetch)
+  getTopStories: getTopStories(fetch),
+  getArticle: getArticle(fetch)
 });
 
 export default apiFactory(window.fetch);

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Article } from "../../models/article";
 import ArticleComponent from "./Article";
+import { ArticleState } from "../../state/types";
 
 interface ArticleGridProps {
-  articles: Article[];
+  articles: ArticleState[];
 }
 
 const GridComponent = styled.div`
@@ -18,8 +18,13 @@ const GridComponent = styled.div`
 export default function ArticleGrid({ articles }: ArticleGridProps) {
   return (
     <GridComponent>
-      {articles.map(article => (
-        <ArticleComponent article={article} loading={false} expanded={false} />
+      {articles.map(articleState => (
+        <ArticleComponent
+          key={articleState.id}
+          article={articleState.article}
+          loading={articleState.loading}
+          expanded={articleState.expanded}
+        />
       ))}
     </GridComponent>
   );

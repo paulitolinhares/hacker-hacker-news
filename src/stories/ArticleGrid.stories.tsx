@@ -11,7 +11,12 @@ const articleMockup: Article = {
   score: 115
 };
 
-const articles = Array.from(Array(24).keys()).map(() => articleMockup);
+const articles = Array.from(Array(24).keys()).map(i => ({
+  id: i,
+  article: articleMockup,
+  loading: false,
+  expanded: false
+}));
 
 storiesOf("ArticleGrid", module).add("with cards", () => (
   <ArticleGrid articles={articles} />

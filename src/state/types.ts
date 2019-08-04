@@ -4,7 +4,7 @@ export interface ArticleState {
   id: number;
   loading: boolean;
   expanded: boolean;
-  article: Article;
+  article: Article | undefined;
 }
 
 export interface GridState {
@@ -13,16 +13,28 @@ export interface GridState {
 
 export const GET_TOP_STORIES = "GET_TOP_STORIES";
 export const LOAD_ARTICLE = "LOAD_ARTICLE";
+export const LOAD_ARTICLE_SUCCESS = "LOAD_ARTICLE_SUCCESS";
 
-interface GetTopStoriesAction {
+export interface GetTopStoriesAction {
   type: typeof GET_TOP_STORIES;
 }
 
-interface LoadArticleAction {
+export interface LoadArticleAction {
   type: typeof LOAD_ARTICLE;
   payload: {
     id: number;
   };
 }
 
-export type ActionTypes = GetTopStoriesAction | LoadArticleAction;
+export interface LoadArticleSuccessAction {
+  type: typeof LOAD_ARTICLE_SUCCESS;
+  payload: {
+    id: number;
+    data: any;
+  };
+}
+
+export type ActionTypes =
+  | GetTopStoriesAction
+  | LoadArticleAction
+  | LoadArticleSuccessAction;

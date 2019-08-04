@@ -13,11 +13,10 @@ const GridContainer = ({ getTopStories, articles }: GridContainerProps) => {
   useEffect(() => {
     getTopStories();
   }, []);
-  return <ArticleGrid articles={[]} />;
+  return <ArticleGrid articles={articles} />;
 };
 
 const mapStateToProps = (state: GridState) => {
-  console.log(state);
   return state;
 };
 
