@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Article } from "../types/article";
+import { Article } from "../models/article";
 import ArticleComponent from "../components/presentation/Article";
 
 const articleMockup: Article = {

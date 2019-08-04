@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Article } from "../types/article";
+import { Article } from "../models/article";
 import ArticleGrid from "../components/presentation/ArticleGrid";
 
 const articleMockup: Article = {

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
-import { Article as ArticleIF } from "../../types/article";
+import { Article as ArticleIF } from "../../models/article";
 
 interface ArticleProps {
   article?: ArticleIF;

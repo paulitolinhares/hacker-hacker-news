@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Article } from "../../types/article";
+import { Article } from "../../models/article";
 import ArticleComponent from "./Article";
 
 interface ArticleGridProps {
