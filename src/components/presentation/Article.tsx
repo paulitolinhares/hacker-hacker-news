@@ -1,11 +1,17 @@
 import React, { Fragment } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Article as ArticleIF } from "../../types/article";
 
 interface ArticleProps {
   article?: ArticleIF;
   loading: boolean;
+  expanded: boolean;
 }
+
+const expandedStyles = `
+  grid-row: span 2;
+  grid-column: span 2;
+`;
 
 const Article = styled.article`
   box-sizing: border-box;
@@ -13,8 +19,12 @@ const Article = styled.article`
   display: flex;
   padding: 16px;
   background-color: #eef1ef;
-
-  /* TODO add border color for cursor: #a9b4c2 */
+  ${(props: { expanded: boolean }) =>
+    props.expanded
+      ? css`
+          ${expandedStyles}
+        `
+      : ""} /* TODO add border color for cursor: #a9b4c2 */
 `;
 
 const Score = styled.span`
@@ -110,16 +120,22 @@ const Spinner = () => (
   </SpinnerContainer>
 );
 
-export default function ArticleComponent({ article, loading }: ArticleProps) {
+const stripText = (text: string) => `${text.slice(0, 44)}...`;
+
+export default function ArticleComponent({
+  article,
+  loading,
+  expanded
+}: ArticleProps) {
   return (
-    <Article>
+    <Article expanded={expanded}>
       {!loading && article && (
         <Fragment>
           <Score>{article.score}</Score>
           <ContentContainer>
             <Title>{article.title}</Title>
             <Author>By {article.author}</Author>
-            <Text>{article.text}</Text>
+            <Text>{expanded ? article.text : stripText(article.text)}</Text>
           </ContentContainer>
         </Fragment>
       )}
