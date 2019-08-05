@@ -11,7 +11,7 @@ interface ArticleGridProps {
 const GridComponent = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 200px);
-  grid-template-rows: repeat(auto-fill, 200px);
+  grid-template-rows: repeat(auto-fit, 200px);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 `;
