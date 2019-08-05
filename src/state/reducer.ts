@@ -9,6 +9,7 @@ import {
   PREV_PAGE
 } from "./types";
 import textGenerator from "../lib/text-generator";
+import { calcPageCount } from "../lib/pagination";
 
 const initialState: GridState = {
   articles: [],
@@ -25,22 +26,26 @@ const reducer = (
         ...state,
         articles: action.payload.ids.map(id => ({
           id,
-          loading: true,
+          loading: false,
           expanded: false,
           article: undefined
         }))
       };
     case LOAD_ARTICLE:
+      const articleIdx = state.articles.findIndex(
+        el => el.id === action.payload.id
+      );
       return {
         ...state,
         articles: [
-          ...state.articles,
+          ...state.articles.slice(0, articleIdx),
           {
             id: action.payload.id,
             loading: true,
             expanded: false,
             article: undefined
-          }
+          },
+          ...state.articles.slice(articleIdx + 1, state.articles.length)
         ]
       };
     case LOAD_ARTICLE_SUCCESS:
@@ -69,12 +74,18 @@ const reducer = (
     case CHANGE_PAGE:
       return {
         ...state,
-        page: action.payload.page
+        page:
+          action.payload.page > calcPageCount(state.articles.length)
+            ? state.page
+            : action.payload.page
       };
     case NEXT_PAGE:
       return {
         ...state,
-        page: state.page + 1
+        page:
+          state.page >= calcPageCount(state.articles.length)
+            ? state.page
+            : state.page + 1
       };
     case PREV_PAGE:
       return {
