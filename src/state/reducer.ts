@@ -6,7 +6,8 @@ import {
   GET_TOP_STORIES_SUCCESS,
   CHANGE_PAGE,
   NEXT_PAGE,
-  PREV_PAGE
+  PREV_PAGE,
+  TOGGLE_EXPANDED
 } from "./types";
 import textGenerator from "../lib/text-generator";
 import { calcPageCount } from "../lib/pagination";
@@ -20,6 +21,7 @@ const reducer = (
   state: GridState = initialState,
   action: ActionTypes
 ): GridState => {
+  let articleIndex;
   switch (action.type) {
     case GET_TOP_STORIES_SUCCESS:
       return {
@@ -32,24 +34,24 @@ const reducer = (
         }))
       };
     case LOAD_ARTICLE:
-      const articleIdx = state.articles.findIndex(
+      articleIndex = state.articles.findIndex(
         el => el.id === action.payload.id
       );
       return {
         ...state,
         articles: [
-          ...state.articles.slice(0, articleIdx),
+          ...state.articles.slice(0, articleIndex),
           {
             id: action.payload.id,
             loading: true,
             expanded: false,
             article: undefined
           },
-          ...state.articles.slice(articleIdx + 1, state.articles.length)
+          ...state.articles.slice(articleIndex + 1, state.articles.length)
         ]
       };
     case LOAD_ARTICLE_SUCCESS:
-      const articleIndex = state.articles.findIndex(
+      articleIndex = state.articles.findIndex(
         el => el.id === action.payload.id
       );
       const { data: articleData } = action.payload;
@@ -91,6 +93,21 @@ const reducer = (
       return {
         ...state,
         page: state.page > 0 ? state.page - 1 : 0
+      };
+    case TOGGLE_EXPANDED:
+      articleIndex = state.articles.findIndex(
+        el => el.id === action.payload.id
+      );
+      return {
+        ...state,
+        articles: [
+          ...state.articles.slice(0, articleIndex),
+          {
+            ...state.articles[articleIndex],
+            expanded: !state.articles[articleIndex].expanded
+          },
+          ...state.articles.slice(articleIndex + 1, state.articles.length)
+        ]
       };
   }
   return state;

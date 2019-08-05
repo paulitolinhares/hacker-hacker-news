@@ -3,7 +3,12 @@ import Main from "../presentation/Main";
 import PaginationButton from "../presentation/PaginationButton";
 import { connect } from "react-redux";
 import { GridState, ArticleState, ActionTypes } from "../../state/types";
-import { nextPage, prevPage, getTopStories } from "../../state/actions";
+import {
+  nextPage,
+  prevPage,
+  getTopStories,
+  toggleExpanded
+} from "../../state/actions";
 import ArticleGrid from "../presentation/ArticleGrid";
 import { getCurrentPageArticles } from "../../lib/pagination";
 
@@ -11,6 +16,7 @@ interface MainContainerProps {
   nextPage: () => ActionTypes;
   prevPage: () => ActionTypes;
   getTopStories: () => ActionTypes;
+  toggleExpanded?: (id: number) => ActionTypes;
   articles: ArticleState[];
 }
 
@@ -18,6 +24,7 @@ function MainContainer({
   nextPage,
   prevPage,
   getTopStories,
+  toggleExpanded,
   articles
 }: MainContainerProps) {
   useEffect(() => {
@@ -26,7 +33,7 @@ function MainContainer({
   return (
     <Main>
       <PaginationButton direction="left" onClick={prevPage} />
-      <ArticleGrid articles={articles} />
+      <ArticleGrid articles={articles} toggleExpanded={toggleExpanded} />
       <PaginationButton direction="right" onClick={nextPage} />
     </Main>
   );
@@ -41,7 +48,8 @@ function mapStateToProps(state: GridState) {
 const mapDispatchToProps = {
   nextPage,
   prevPage,
-  getTopStories
+  getTopStories,
+  toggleExpanded
 };
 
 export default connect(

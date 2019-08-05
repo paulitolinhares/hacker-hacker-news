@@ -6,6 +6,7 @@ interface ArticleProps {
   article?: ArticleIF;
   loading: boolean;
   expanded: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const expandedStyles = `
@@ -21,6 +22,7 @@ const Article = styled.article`
   padding: 16px;
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
   ${(props: { expanded: boolean }) =>
     props.expanded
       ? css`
@@ -129,10 +131,11 @@ const stripText = (text: string, length: number) =>
 export default function ArticleComponent({
   article,
   loading,
-  expanded
+  expanded,
+  onClick
 }: ArticleProps) {
   return (
-    <Article expanded={expanded}>
+    <Article expanded={expanded} onClick={onClick}>
       {!loading && article && (
         <Fragment>
           <Score>{article.score}</Score>

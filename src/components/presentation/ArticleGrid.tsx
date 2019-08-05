@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import ArticleComponent from "./Article";
-import { ArticleState } from "../../state/types";
+import { ArticleState, ActionTypes } from "../../state/types";
 
 interface ArticleGridProps {
   articles: ArticleState[];
+  toggleExpanded?: (id: number) => ActionTypes;
 }
 
 const GridComponent = styled.div`
@@ -15,7 +16,10 @@ const GridComponent = styled.div`
   grid-row-gap: 20px;
 `;
 
-export default function ArticleGrid({ articles }: ArticleGridProps) {
+export default function ArticleGrid({
+  articles,
+  toggleExpanded
+}: ArticleGridProps) {
   return (
     <GridComponent>
       {articles.map(articleState => (
@@ -24,6 +28,7 @@ export default function ArticleGrid({ articles }: ArticleGridProps) {
           article={articleState.article}
           loading={articleState.loading}
           expanded={articleState.expanded}
+          onClick={() => toggleExpanded && toggleExpanded(articleState.id)}
         />
       ))}
     </GridComponent>

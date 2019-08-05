@@ -19,6 +19,7 @@ export const LOAD_ARTICLE_SUCCESS = "LOAD_ARTICLE_SUCCESS";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREV_PAGE = "PREV_PAGE";
+export const TOGGLE_EXPANDED = "TOGGLE_EXPANDED";
 
 export interface GetTopStoriesAction {
   type: typeof GET_TOP_STORIES;
@@ -61,6 +62,13 @@ export interface PrevPageAction {
   type: typeof PREV_PAGE;
 }
 
+export interface ToggleExpandedAction {
+  type: typeof TOGGLE_EXPANDED;
+  payload: {
+    id: number;
+  };
+}
+
 export type ActionTypes =
   | GetTopStoriesAction
   | GetTopStoriesSuccessAction
@@ -68,4 +76,5 @@ export type ActionTypes =
   | LoadArticleSuccessAction
   | ChangePageAction
   | NextPageAction
-  | PrevPageAction;
+  | PrevPageAction
+  | ToggleExpandedAction;
