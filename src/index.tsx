@@ -7,6 +7,7 @@ import reducer from "./state/reducer";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./state/sagas";
+import "./assets/fonts/icons/styles.css";
 
 const sagaMiddleware = createSagaMiddleware();
 

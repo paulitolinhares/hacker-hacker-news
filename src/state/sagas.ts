@@ -6,7 +6,9 @@ import {
   LOAD_ARTICLE_SUCCESS,
   LoadArticleSuccessAction,
   GET_TOP_STORIES_SUCCESS,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  NEXT_PAGE,
+  PREV_PAGE
 } from "./types";
 import { getCurrentPageArticles } from "../lib/pagination";
 
@@ -53,6 +55,8 @@ function* watchGetTopStories() {
 function* watchGetTopStoriesSuccess() {
   yield takeEvery(GET_TOP_STORIES_SUCCESS, fetchPage);
   yield takeEvery(CHANGE_PAGE, fetchPage);
+  yield takeEvery(NEXT_PAGE, fetchPage);
+  yield takeEvery(PREV_PAGE, fetchPage);
 }
 
 export default function* rootSaga() {

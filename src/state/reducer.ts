@@ -4,7 +4,9 @@ import {
   LOAD_ARTICLE,
   LOAD_ARTICLE_SUCCESS,
   GET_TOP_STORIES_SUCCESS,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  NEXT_PAGE,
+  PREV_PAGE
 } from "./types";
 import textGenerator from "../lib/text-generator";
 
@@ -68,6 +70,16 @@ const reducer = (
       return {
         ...state,
         page: action.payload.page
+      };
+    case NEXT_PAGE:
+      return {
+        ...state,
+        page: state.page + 1
+      };
+    case PREV_PAGE:
+      return {
+        ...state,
+        page: state.page > 0 ? state.page - 1 : 0
       };
   }
   return state;

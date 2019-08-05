@@ -1,8 +1,8 @@
 import React from "react";
-import GridContainer from "./components/containers/GridContainer";
+import MainContainer from "./components/containers/MainContainer";
 
 const App: React.FC = props => {
-  return <GridContainer {...props} />;
+  return <MainContainer />;
 };
 
 export default App;

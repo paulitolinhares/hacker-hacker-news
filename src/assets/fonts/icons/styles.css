@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "hacker-news";
+  src: url("./hacker-news.eot");
+  src: url("./hacker-news.eot?#iefix") format("embedded-opentype"),
+    url("./hacker-news.woff") format("woff"),
+    url("./hacker-news.ttf") format("truetype"),
+    url("./hacker-news.svg#hacker-news") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "hacker-news" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "hacker-news" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-angle-right:before {
+  content: "\61";
+}
+.icon-angle-left:before {
+  content: "\62";
+}
