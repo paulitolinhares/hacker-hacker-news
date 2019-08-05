@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./state/sagas";
 import "./assets/fonts/icons/styles.css";
+import "./assets/fonts/inconsolata.css";
 
 const sagaMiddleware = createSagaMiddleware();
 

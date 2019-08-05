@@ -16,9 +16,11 @@ const expandedStyles = `
 const Article = styled.article`
   box-sizing: border-box;
   border: 5px solid transparent;
+  border-radius: 5px;
   display: flex;
   padding: 16px;
-  background-color: #eef1ef;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   ${(props: { expanded: boolean }) =>
     props.expanded
       ? css`
@@ -31,6 +33,7 @@ const Score = styled.span`
   color: #1c2321;
   font-size: 12px;
   text-align: center;
+  margin-top: 5px;
 
   &:before {
     content: "";
@@ -120,7 +123,8 @@ const Spinner = () => (
   </SpinnerContainer>
 );
 
-const stripText = (text: string) => `${text.slice(0, 44)}...`;
+const stripText = (text: string, length: number) =>
+  `${text.slice(0, length)}...`;
 
 export default function ArticleComponent({
   article,
@@ -133,9 +137,11 @@ export default function ArticleComponent({
         <Fragment>
           <Score>{article.score}</Score>
           <ContentContainer>
-            <Title>{article.title}</Title>
+            <Title>
+              {expanded ? article.title : stripText(article.title, 40)}
+            </Title>
             <Author>By {article.author}</Author>
-            <Text>{expanded ? article.text : stripText(article.text)}</Text>
+            <Text>{expanded ? article.text : stripText(article.text, 44)}</Text>
           </ContentContainer>
         </Fragment>
       )}
