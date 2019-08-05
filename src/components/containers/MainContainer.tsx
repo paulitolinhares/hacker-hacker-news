@@ -10,6 +10,7 @@ import {
   toggleExpanded
 } from "../../state/actions";
 import ArticleGrid from "../presentation/ArticleGrid";
+import Footer from "../presentation/Footer";
 import { getCurrentPageArticles } from "../../lib/pagination";
 
 interface MainContainerProps {
@@ -31,11 +32,14 @@ function MainContainer({
     getTopStories();
   }, [getTopStories]);
   return (
-    <Main>
-      <PaginationButton direction="left" onClick={prevPage} />
-      <ArticleGrid articles={articles} toggleExpanded={toggleExpanded} />
-      <PaginationButton direction="right" onClick={nextPage} />
-    </Main>
+    <React.Fragment>
+      <Main>
+        <PaginationButton direction="left" onClick={prevPage} />
+        <ArticleGrid articles={articles} toggleExpanded={toggleExpanded} />
+        <PaginationButton direction="right" onClick={nextPage} />
+      </Main>
+      <Footer />
+    </React.Fragment>
   );
 }
 
