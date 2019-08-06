@@ -7,13 +7,15 @@ export type KeyNavigationOptions =
   | "down"
   | "toggle"
   | "nextPage"
-  | "prevPage";
+  | "prevPage"
+  | "toggleModal";
 
 const keyMap: { [key: string]: KeyNavigationOptions } = {
   w: "top",
   a: "left",
   s: "down",
   d: "right",
+  h: "toggleModal",
   Enter: "toggle",
   ArrowRight: "nextPage",
   ArrowLeft: "prevPage"

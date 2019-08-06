@@ -11,7 +11,8 @@ import {
   NAVIGATION_NEXT_COLUMN,
   NAVIGATION_PREV_COLUMN,
   NAVIGATION_NEXT_ROW,
-  NAVIGATION_PREV_ROW
+  NAVIGATION_PREV_ROW,
+  TOGGLE_MODAL
 } from "./types";
 import textGenerator from "../lib/text-generator";
 import { calcPageCount } from "../lib/pagination";
@@ -19,7 +20,8 @@ import { calcPageCount } from "../lib/pagination";
 const initialState: GridState = {
   articles: [],
   page: 0,
-  cursorIndex: 0
+  cursorIndex: 0,
+  isModalOpen: false
 };
 
 const reducer = (
@@ -139,6 +141,11 @@ const reducer = (
         ...state,
         cursorIndex:
           state.cursorIndex < 8 ? state.cursorIndex : state.cursorIndex - 8
+      };
+    case TOGGLE_MODAL:
+      return {
+        ...state,
+        isModalOpen: !state.isModalOpen
       };
   }
   return state;

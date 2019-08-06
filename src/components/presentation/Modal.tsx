@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface ModalProps {
   open: boolean;
+  onClose?: () => void;
 }
 
 const ModalBackground = styled.div`
@@ -11,10 +12,11 @@ const ModalBackground = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  ${(props: { open: boolean }) => props.open && `display: flex`}
 `;
 
 const ModalContent = styled.div`
@@ -46,11 +48,11 @@ const ModalClose = styled.button`
   }
 `;
 
-export default function ModalComponent({ open }: ModalProps) {
+export default function ModalComponent({ open, onClose }: ModalProps) {
   return (
-    <ModalBackground>
+    <ModalBackground open={open}>
       <ModalContent>
-        <ModalClose>x</ModalClose>
+        <ModalClose onClick={onClose}>x</ModalClose>
         <h4>Help Center</h4>
         <p>Hacker-hacker News has some keyboard commands for heavy users</p>
         <ul>

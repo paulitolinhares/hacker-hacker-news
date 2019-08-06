@@ -8,6 +8,7 @@ export interface ArticleState {
 }
 
 export interface GridState {
+  isModalOpen: boolean;
   articles: ArticleState[];
   page: number;
   cursorIndex: number;
@@ -25,6 +26,7 @@ export const NAVIGATION_NEXT_COLUMN = "NAVIGATION_NEXT_COLUMN";
 export const NAVIGATION_PREV_COLUMN = "NAVIGATION_PREV_COLUMN";
 export const NAVIGATION_NEXT_ROW = "NAVIGATION_NEXT_ROW";
 export const NAVIGATION_PREV_ROW = "NAVIGATION_PREV_ROW";
+export const TOGGLE_MODAL = "TOGGLE_MODAL";
 
 export interface GetTopStoriesAction {
   type: typeof GET_TOP_STORIES;
@@ -91,6 +93,10 @@ export interface NavigationPrevColumnAction {
   type: typeof NAVIGATION_PREV_COLUMN;
 }
 
+export interface ToggleModalAction {
+  type: typeof TOGGLE_MODAL;
+}
+
 export type ActionTypes =
   | GetTopStoriesAction
   | GetTopStoriesSuccessAction
@@ -103,4 +109,5 @@ export type ActionTypes =
   | NavigationNextRowAction
   | NavigationPrevRowAction
   | NavigationNextColumnAction
-  | NavigationPrevColumnAction;
+  | NavigationPrevColumnAction
+  | ToggleModalAction;

@@ -7,7 +7,8 @@ import {
   NAVIGATION_NEXT_ROW,
   NAVIGATION_NEXT_COLUMN,
   NAVIGATION_PREV_COLUMN,
-  NAVIGATION_PREV_ROW
+  NAVIGATION_PREV_ROW,
+  TOGGLE_MODAL
 } from "./types";
 
 export function getTopStories(): ActionTypes {
@@ -65,5 +66,11 @@ export function navPrevRow(): ActionTypes {
 export function navPrevColumn(): ActionTypes {
   return {
     type: NAVIGATION_PREV_COLUMN
+  };
+}
+
+export function toggleModal(): ActionTypes {
+  return {
+    type: TOGGLE_MODAL
   };
 }
