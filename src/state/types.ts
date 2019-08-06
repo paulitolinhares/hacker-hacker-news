@@ -50,7 +50,11 @@ export interface LoadArticleSuccessAction {
   type: typeof LOAD_ARTICLE_SUCCESS;
   payload: {
     id: number;
-    data: any;
+    data: {
+      by: string;
+      title: string;
+      score: number;
+    };
   };
 }
 

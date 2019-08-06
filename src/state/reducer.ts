@@ -17,7 +17,7 @@ import {
 import textGenerator from "../lib/text-generator";
 import { calcPageCount } from "../lib/pagination";
 
-const initialState: GridState = {
+export const initialState: GridState = {
   articles: [],
   page: 0,
   cursorIndex: 0,
@@ -74,7 +74,7 @@ const reducer = (
               author: articleData.by,
               score: articleData.score,
               title: articleData.title,
-              text: textGenerator()
+              text: textGenerator() // TODO remove this if the API returns proper text
             }
           },
           ...state.articles.slice(articleIndex + 1, state.articles.length)
@@ -84,6 +84,7 @@ const reducer = (
       return {
         ...state,
         page:
+          action.payload.page < 0 ||
           action.payload.page > calcPageCount(state.articles.length)
             ? state.page
             : action.payload.page

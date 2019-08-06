@@ -32,7 +32,7 @@ const Article = styled.article`
     css`
       ${props.expanded ? expandedStyles : ""}
       ${props.selected ? cursorStyles : ""}
-    `} /* TODO add border color for cursor: #a9b4c2 */
+    `}
 `;
 
 const Score = styled.span`
