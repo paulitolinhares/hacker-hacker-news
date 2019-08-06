@@ -17,6 +17,7 @@ import ArticleGrid from "../presentation/ArticleGrid";
 import Footer from "../presentation/Footer";
 import { getCurrentPageArticles } from "../../lib/pagination";
 import useKeyboardNav from "../../hooks/useKeyboardNav";
+import Page from "../presentation/Page";
 
 interface MainContainerProps {
   nextPage: () => ActionTypes;
@@ -91,16 +92,19 @@ function MainContainer({
   });
   return (
     <React.Fragment>
-      <Main>
-        <PaginationButton direction="left" onClick={prevPage} />
-        <ArticleGrid
-          articles={articles}
-          toggleExpanded={toggleExpanded}
-          cursorIndex={cursorIndex}
-        />
-        <PaginationButton direction="right" onClick={nextPage} />
-      </Main>
-      <Footer />
+      <Page>
+        <div>Test header</div>
+        <Main>
+          <PaginationButton direction="left" onClick={prevPage} />
+          <ArticleGrid
+            articles={articles}
+            toggleExpanded={toggleExpanded}
+            cursorIndex={cursorIndex}
+          />
+          <PaginationButton direction="right" onClick={nextPage} />
+        </Main>
+        <Footer />
+      </Page>
     </React.Fragment>
   );
 }

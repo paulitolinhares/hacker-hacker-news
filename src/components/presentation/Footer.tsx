@@ -8,9 +8,6 @@ const Footer = styled.footer`
   height: 60px;
   background-color: #1c2321;
   color: #fff;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
 `;
 
 const Link = styled.a`
