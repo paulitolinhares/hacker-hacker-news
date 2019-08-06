@@ -102,9 +102,9 @@ const reducer = (
         cursorIndex: 0
       };
     case TOGGLE_EXPANDED:
-      articleIndex = action.payload.index
-        ? action.payload.index
-        : state.articles.findIndex(el => el.id === action.payload.id);
+      articleIndex = action.payload.id
+        ? state.articles.findIndex(el => el.id === action.payload.id)
+        : action.payload.index || 0;
       return {
         ...state,
         articles: [
