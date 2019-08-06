@@ -1,3 +1,5 @@
+import { Article } from "../models/article";
+
 const baseUrl = "https://hacker-news.firebaseio.com/v0";
 
 const getTopStories = (fetch: any) => {
@@ -9,7 +11,7 @@ const getTopStories = (fetch: any) => {
 };
 
 const getArticle = (fetch: any) => {
-  return async function getArticleInjected(id: number): Promise<any> {
+  return async function getArticleInjected(id: number): Promise<Article> {
     const url = `${baseUrl}/item/${id}.json`;
     const article = await fetch(url).then((res: Response) => res.json());
     return article;
