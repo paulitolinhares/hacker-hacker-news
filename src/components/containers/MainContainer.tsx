@@ -18,6 +18,7 @@ import Footer from "../presentation/Footer";
 import { getCurrentPageArticles } from "../../lib/pagination";
 import useKeyboardNav from "../../hooks/useKeyboardNav";
 import Page from "../presentation/Page";
+import Modal from "../presentation/Modal";
 
 interface MainContainerProps {
   nextPage: () => ActionTypes;
@@ -105,6 +106,7 @@ function MainContainer({
         </Main>
         <Footer />
       </Page>
+      <Modal open={true} />
     </React.Fragment>
   );
 }
