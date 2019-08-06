@@ -33,9 +33,9 @@ describe("API Tests", () => {
         score: 155
       };
       const mockFetch = (_url: string) => {
-        return Promise.resolve({
+        return Promise.resolve(({
           json: () => mockArticle
-        });
+        } as unknown) as Response);
       };
 
       const mockedApi = apiFactory(mockFetch);
@@ -45,7 +45,9 @@ describe("API Tests", () => {
     });
     it("should call fetch with the correct id", async () => {
       const id = 1;
-      const mockFetch = jest.fn(() => Promise.resolve({ json: () => {} }));
+      const mockFetch = jest.fn(() =>
+        Promise.resolve(({ json: () => {} } as unknown) as Response)
+      );
       const mockedApi = apiFactory(mockFetch);
 
       await mockedApi.getArticle(id);
