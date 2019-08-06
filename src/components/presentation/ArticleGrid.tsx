@@ -5,7 +5,14 @@ import { ArticleState, ActionTypes } from "../../state/types";
 
 interface ArticleGridProps {
   articles: ArticleState[];
-  toggleExpanded?: (id: number) => ActionTypes;
+  toggleExpanded?: ({
+    id,
+    index
+  }: {
+    id?: number;
+    index?: number;
+  }) => ActionTypes;
+  cursorIndex: number;
 }
 
 const GridComponent = styled.div`
@@ -18,17 +25,21 @@ const GridComponent = styled.div`
 
 export default function ArticleGrid({
   articles,
+  cursorIndex,
   toggleExpanded
 }: ArticleGridProps) {
   return (
     <GridComponent>
-      {articles.map(articleState => (
+      {articles.map((articleState, index) => (
         <ArticleComponent
           key={articleState.id}
           article={articleState.article}
           loading={articleState.loading}
           expanded={articleState.expanded}
-          onClick={() => toggleExpanded && toggleExpanded(articleState.id)}
+          selected={index === cursorIndex}
+          onClick={() =>
+            toggleExpanded && toggleExpanded({ id: articleState.id })
+          }
         />
       ))}
     </GridComponent>

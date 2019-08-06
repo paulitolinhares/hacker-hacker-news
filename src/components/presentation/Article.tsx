@@ -6,12 +6,17 @@ interface ArticleProps {
   article?: ArticleIF;
   loading: boolean;
   expanded: boolean;
+  selected: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const expandedStyles = `
   grid-row: span 2;
   grid-column: span 2;
+`;
+
+const cursorStyles = `
+  border-color: #a9b4c2;
 `;
 
 const Article = styled.article`
@@ -23,12 +28,11 @@ const Article = styled.article`
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  ${(props: { expanded: boolean }) =>
-    props.expanded
-      ? css`
-          ${expandedStyles}
-        `
-      : ""} /* TODO add border color for cursor: #a9b4c2 */
+  ${(props: { expanded: boolean; selected: boolean }) =>
+    css`
+      ${props.expanded ? expandedStyles : ""}
+      ${props.selected ? cursorStyles : ""}
+    `} /* TODO add border color for cursor: #a9b4c2 */
 `;
 
 const Score = styled.span`
@@ -132,10 +136,11 @@ export default function ArticleComponent({
   article,
   loading,
   expanded,
+  selected,
   onClick
 }: ArticleProps) {
   return (
-    <Article expanded={expanded} onClick={onClick}>
+    <Article expanded={expanded} selected={selected} onClick={onClick}>
       {!loading && article && (
         <Fragment>
           <Score>{article.score}</Score>

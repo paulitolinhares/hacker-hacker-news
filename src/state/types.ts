@@ -10,6 +10,7 @@ export interface ArticleState {
 export interface GridState {
   articles: ArticleState[];
   page: number;
+  cursorIndex: number;
 }
 
 export const GET_TOP_STORIES = "GET_TOP_STORIES";
@@ -20,6 +21,10 @@ export const CHANGE_PAGE = "CHANGE_PAGE";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREV_PAGE = "PREV_PAGE";
 export const TOGGLE_EXPANDED = "TOGGLE_EXPANDED";
+export const NAVIGATION_NEXT_COLUMN = "NAVIGATION_NEXT_COLUMN";
+export const NAVIGATION_PREV_COLUMN = "NAVIGATION_PREV_COLUMN";
+export const NAVIGATION_NEXT_ROW = "NAVIGATION_NEXT_ROW";
+export const NAVIGATION_PREV_ROW = "NAVIGATION_PREV_ROW";
 
 export interface GetTopStoriesAction {
   type: typeof GET_TOP_STORIES;
@@ -65,8 +70,25 @@ export interface PrevPageAction {
 export interface ToggleExpandedAction {
   type: typeof TOGGLE_EXPANDED;
   payload: {
-    id: number;
+    id?: number;
+    index?: number;
   };
+}
+
+export interface NavigationNextRowAction {
+  type: typeof NAVIGATION_NEXT_ROW;
+}
+
+export interface NavigationPrevRowAction {
+  type: typeof NAVIGATION_PREV_ROW;
+}
+
+export interface NavigationNextColumnAction {
+  type: typeof NAVIGATION_NEXT_COLUMN;
+}
+
+export interface NavigationPrevColumnAction {
+  type: typeof NAVIGATION_PREV_COLUMN;
 }
 
 export type ActionTypes =
@@ -77,4 +99,8 @@ export type ActionTypes =
   | ChangePageAction
   | NextPageAction
   | PrevPageAction
-  | ToggleExpandedAction;
+  | ToggleExpandedAction
+  | NavigationNextRowAction
+  | NavigationPrevRowAction
+  | NavigationNextColumnAction
+  | NavigationPrevColumnAction;

@@ -13,12 +13,18 @@ const articleMockup: Article = {
 
 storiesOf("Article", module)
   .add("Loading", () => (
-    <ArticleComponent article={undefined} loading={true} expanded={false} />
+    <ArticleComponent
+      article={undefined}
+      loading={true}
+      expanded={false}
+      selected={false}
+    />
   ))
   .add("with article", () => (
     <ArticleComponent
       article={articleMockup}
       loading={false}
       expanded={false}
+      selected={false}
     />
   ));

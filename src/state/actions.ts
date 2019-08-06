@@ -3,7 +3,11 @@ import {
   GET_TOP_STORIES,
   NEXT_PAGE,
   PREV_PAGE,
-  TOGGLE_EXPANDED
+  TOGGLE_EXPANDED,
+  NAVIGATION_NEXT_ROW,
+  NAVIGATION_NEXT_COLUMN,
+  NAVIGATION_PREV_COLUMN,
+  NAVIGATION_PREV_ROW
 } from "./types";
 
 export function getTopStories(): ActionTypes {
@@ -24,11 +28,42 @@ export function prevPage(): ActionTypes {
   };
 }
 
-export function toggleExpanded(id: number): ActionTypes {
+export function toggleExpanded({
+  id,
+  index
+}: {
+  id?: number;
+  index?: number;
+}): ActionTypes {
   return {
     type: TOGGLE_EXPANDED,
     payload: {
-      id
+      id,
+      index
     }
+  };
+}
+
+export function navNextRow(): ActionTypes {
+  return {
+    type: NAVIGATION_NEXT_ROW
+  };
+}
+
+export function navNextColumn(): ActionTypes {
+  return {
+    type: NAVIGATION_NEXT_COLUMN
+  };
+}
+
+export function navPrevRow(): ActionTypes {
+  return {
+    type: NAVIGATION_PREV_ROW
+  };
+}
+
+export function navPrevColumn(): ActionTypes {
+  return {
+    type: NAVIGATION_PREV_COLUMN
   };
 }

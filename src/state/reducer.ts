@@ -7,14 +7,19 @@ import {
   CHANGE_PAGE,
   NEXT_PAGE,
   PREV_PAGE,
-  TOGGLE_EXPANDED
+  TOGGLE_EXPANDED,
+  NAVIGATION_NEXT_COLUMN,
+  NAVIGATION_PREV_COLUMN,
+  NAVIGATION_NEXT_ROW,
+  NAVIGATION_PREV_ROW
 } from "./types";
 import textGenerator from "../lib/text-generator";
 import { calcPageCount } from "../lib/pagination";
 
 const initialState: GridState = {
   articles: [],
-  page: 0
+  page: 0,
+  cursorIndex: 0
 };
 
 const reducer = (
@@ -87,17 +92,19 @@ const reducer = (
         page:
           state.page >= calcPageCount(state.articles.length)
             ? state.page
-            : state.page + 1
+            : state.page + 1,
+        cursorIndex: 0
       };
     case PREV_PAGE:
       return {
         ...state,
-        page: state.page > 0 ? state.page - 1 : 0
+        page: state.page > 0 ? state.page - 1 : 0,
+        cursorIndex: 0
       };
     case TOGGLE_EXPANDED:
-      articleIndex = state.articles.findIndex(
-        el => el.id === action.payload.id
-      );
+      articleIndex = action.payload.index
+        ? action.payload.index
+        : state.articles.findIndex(el => el.id === action.payload.id);
       return {
         ...state,
         articles: [
@@ -108,6 +115,30 @@ const reducer = (
           },
           ...state.articles.slice(articleIndex + 1, state.articles.length)
         ]
+      };
+    case NAVIGATION_NEXT_COLUMN:
+      return {
+        ...state,
+        cursorIndex:
+          state.cursorIndex >= 23 ? state.cursorIndex : state.cursorIndex + 1
+      };
+    case NAVIGATION_PREV_COLUMN:
+      return {
+        ...state,
+        cursorIndex:
+          state.cursorIndex <= 0 ? state.cursorIndex : state.cursorIndex - 1
+      };
+    case NAVIGATION_NEXT_ROW:
+      return {
+        ...state,
+        cursorIndex:
+          state.cursorIndex > 15 ? state.cursorIndex : state.cursorIndex + 8
+      };
+    case NAVIGATION_PREV_ROW:
+      return {
+        ...state,
+        cursorIndex:
+          state.cursorIndex < 8 ? state.cursorIndex : state.cursorIndex - 8
       };
   }
   return state;

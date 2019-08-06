@@ -19,5 +19,5 @@ const articles = Array.from(Array(24).keys()).map(i => ({
 }));
 
 storiesOf("ArticleGrid", module).add("with cards", () => (
-  <ArticleGrid articles={articles} />
+  <ArticleGrid articles={articles} cursorIndex={0} />
 ));
